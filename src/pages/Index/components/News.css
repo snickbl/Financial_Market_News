@@ -1,0 +1,35 @@
+.article {
+    width: 420px;
+    height: 450px;
+    display: table-cell;
+    padding: 0;
+}
+
+.text {
+    max-width: 440px;
+    display: flex;
+    text-align: center;
+    height: 151px;
+    align-items: center;
+
+    background-color: #112B3E;
+    color: #FFFFFF;
+}
+
+.col-sm-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.col-sm-4 a:hover {
+    text-decoration: none;
+}
+
+.div-of-img {
+    max-width: 440px;
+    width: 100%;
+}
+.div-of-img img {
+    width: 100%;
+}
