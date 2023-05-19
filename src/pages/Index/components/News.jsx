@@ -10,20 +10,17 @@ const News = ({data}) => {
     
     data.forEach((item, index) => {
         currentRow.push(
-          <div key={index} className="col-sm-4">
+          <div key={item.id} className="col-sm-4">
+            <Link to={`/article/${item.id}`}>
             <div className="div-of-img">
-                <img src={item.imageUrl} width='440px' height='299px'></img>
+                <img src={item.imageUrl} width='440px' height='299px' alt='news_picture'></img>
 
             </div>
-            <Link to={`/article/${index}`}>
+            
                 <div className='text'>
                     <h3 className='title'>{item.title}</h3>
                 </div>  
             </Link>
-            {/* Здесь размещаете содержимое элемента */}
-            {/* <h3>{item.title}</h3>
-            <p>{item.description}</p>
-            ... */}
           </div>
         );
     
@@ -37,65 +34,9 @@ const News = ({data}) => {
         <div className="container col-12 mt-5">
 
 <div className="container col-12">{rows}</div>
-        {/* {
-            data.data.map((element, index)=>{
-                if(index%3 === 0 && index!==0){
-                    
-                    return(
-                        <>
-                            <div className="w-100"></div>
-                            <div className="col-sm article mx-3">
-                                <img src={element.imageUrl} width='420px' height='299px'></img>
-                                    <div>
-                                        <h3 className='title'>{element.title}</h3>
-                                        <h6><a href='https://www.reuters.com/article'></a></h6>
-                                    </div>  
-                            </div>
-                        </>
-                    )
-                } 
-                return(
-                    <div className="col-sm article  mx-3">
-                        <img src={element.imageUrl} width='420px' height='299px'></img>
-                            <div className='title'>
-                                <h3>{element.title}</h3>
-                                <h6><a href='https://www.reuters.com/article'></a></h6>
-                            </div>  
-                    </div>
-                )
-            })
-        } */}
-     
-        {/* {
-            data.data.map((element, index) => {
-                return(
-                    <div className="col-sm article  mx-3">
-                        <img src={element.imageUrl} width='420px' height='299px'></img>
-                            <div className='title'>
-                                <h3>{element.title}</h3>
-                                <h6><a href='https://www.reuters.com/article'></a></h6>
-                            </div>  
-                    </div>
-                )
-            })
-        }
-        */}
- 
-
-
-
-        </div> 
+               </div> 
     )
   }
   
 export default News
 
-
-
-/* <div className='article'>
-                        <img src={element.imageUrl} width='420px' height='299px'></img>
-                        <div>
-                            <h3 className='title'>{element.title}</h3>
-                            <h6><a href='https://www.reuters.com/article'></a></h6>
-                        </div>
-                    </div> */

@@ -2,14 +2,14 @@ import React from 'react'
 import './Index.css'
 import News from './components/News'
 import { useSelector } from 'react-redux'
-import InfoSlice from '../../ReduxToolkit/reducers/InfoSlice'
+import {GetData} from '../../GetData'
 
 
 const Index = () => {
 
   const {news} = useSelector(state => state.InfoSlice)
 
-  console.log(news)
+  GetData()
 
   return (
     <div className='index'>

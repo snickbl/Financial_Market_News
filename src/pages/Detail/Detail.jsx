@@ -1,20 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Detail.css'
-import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../../firebase'
 
 const Detail = () => {
 
     const {id} = useParams()
 
-    const news = useSelector(state => state.InfoSlice.news)
+    async function GetDataByID(article_id){
 
-    let article = news[id]
+        const docRef = doc(db, "market_news", article_id);
+        const snapshot = await getDoc(docRef).then((snap)=>{
+            if (!snap.exists()) throw new Error("not-found");
+            return snap.data();
+        })
+        
+        return snapshot
+    }
 
-    const paragraphs = article.description.split('\n');
-    const paragraphs_comm = article.expertComment.split('\n');
 
-    console.log(article.description)
+    const [article,setArticle] = useState({})
+
+    useEffect(()=>{
+        GetDataByID(id).then(e => {
+            setArticle(e)
+        })
+    },[id])
+
+    if(Object.keys(article).length){
+
+
+        const paragraphs = article.description.split('\n');
+        const paragraphs_comm = article.expertComment.split('\n');
+
+
 
     
   return ( 
@@ -22,7 +42,7 @@ const Detail = () => {
         <div className='container mt-5 d-flex align-items-start flex-column'>
             <h3 className='article_title'>{article.title}</h3>
             <div className="picture" style={{backgroundImage: `url(${article.imageUrl})`}}>
-                {/* <img src={article.imageUrl} alt="photo"/> */}
+                
             </div>
             <div className="description">
                 {paragraphs.map((paragraph, index) => (
@@ -42,6 +62,8 @@ const Detail = () => {
         </div>
     </div>
   )
+    }
+
 }
 
 export default Detail
